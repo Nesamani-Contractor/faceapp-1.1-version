@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Shine Me",
+    "slug": "shine-me",
+    "scheme": "shineme",
+    "version": "1.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#141010",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.shineme.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Shine Me uses your camera to read your face shape and colour season.",
+        "NSPhotoLibraryUsageDescription": "Shine Me lets you pick an existing photo for your scan or for Makeup Match."
+      }
+    },
+    "android": {
+      "package": "com.shineme.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#141010",
+        "foregroundImage": "./assets/icon.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/icon.png"
+    },
+    "plugins": [
+      ["expo-camera", { "cameraPermission": "Shine Me uses your camera to read your face shape and colour season." }],
+      ["expo-image-picker", { "photosPermission": "Shine Me lets you pick an existing photo for your scan or for Makeup Match." }],
+      ["expo-splash-screen", { "image": "./assets/icon.png", "imageWidth": 160, "resizeMode": "contain", "backgroundColor": "#141010" }],
+      "expo-font"
+    ]
+  }
+}
