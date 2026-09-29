@@ -33,6 +33,16 @@ npx expo start          # press i / a / w, or scan the QR with Expo Go
 Without a backend the app runs in **demo mode**: scans produce a sample reading
 (clearly labelled on the results screen) so every screen can be reviewed.
 
+## Preview in a browser
+
+```bash
+npm run preview          # builds preview/dist and serves it at http://localhost:8080
+```
+
+`npm run preview:build` only builds. The page shows the app inside a phone frame on
+desktop and full-screen on a phone. Browser previews can't use the camera, so scan
+by uploading a photo with the gallery button.
+
 ## Real AI analysis (Claude)
 
 `server/` is a small Express API that sends the photo to Claude

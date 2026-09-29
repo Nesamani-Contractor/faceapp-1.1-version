@@ -8,3 +8,4 @@ web-build/
 server/node_modules/
 server/.env
 .DS_Store
+preview/dist/

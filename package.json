@@ -8,7 +8,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "preview:build": "node scripts/build-preview.mjs",
+    "preview": "node scripts/build-preview.mjs && npx --yes serve preview/dist -l 8080"
   },
   "dependencies": {
     "@expo-google-fonts/jetbrains-mono": "^0.4.1",
