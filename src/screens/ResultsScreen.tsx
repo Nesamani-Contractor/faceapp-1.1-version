@@ -10,6 +10,7 @@ import { useAppState } from '../state/AppState';
 import { formatDateTime, humanize } from '../utils/format';
 import type { RootStackParamList } from '../navigation/types';
 import { LookCard } from '../components/LookCard';
+import { HandsFreeCard } from '../components/HandsFreeCard';
 import { BackButton, ChampagneGlow, Eyebrow, Hairline, Photo, PillButton, Swatches } from '../components/ui';
 
 function Section({ eyebrow, title, children }: { eyebrow: string; title: string; children: React.ReactNode }) {
@@ -161,6 +162,9 @@ export default function ResultsScreen() {
           </Section>
 
           <Section eyebrow="MAKEUP GUIDE" title="Made for your features">
+            <View style={{ marginTop: 14, marginBottom: 4 }}>
+              <HandsFreeCard onPress={() => navigation.navigate('Guide', { recordId: record.id })} />
+            </View>
             {(['base', 'cheeks', 'eyes', 'brows', 'lips'] as const).map((k, i, arr) => (
               <React.Fragment key={k}>
                 <View style={styles.step}>

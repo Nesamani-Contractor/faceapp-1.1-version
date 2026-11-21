@@ -11,6 +11,7 @@ import { useAppState } from '../state/AppState';
 import type { RootStackParamList } from '../navigation/types';
 import { ScanArch } from '../components/ScanArch';
 import { BackButton, ChampagneGlow, Chip, Eyebrow, GoldCta, Hairline, Photo, PillButton, Swatches } from '../components/ui';
+import { HandsFreeCard } from '../components/HandsFreeCard';
 
 export default function LookDetailScreen() {
   const insets = useSafeAreaInsets();
@@ -83,7 +84,10 @@ export default function LookDetailScreen() {
             </View>
           )}
 
-          <Text style={styles.h}>How to wear it</Text>
+          <View style={styles.howHead}>
+            <Text style={[styles.h, { marginBottom: 0 }]}>How to wear it</Text>
+          </View>
+          <HandsFreeCard onPress={() => navigation.navigate('Guide', { lookId: look.id })} />
           {look.steps.map((s, i) => (
             <React.Fragment key={s.area}>
               <View style={styles.step}>
@@ -125,6 +129,7 @@ const styles = StyleSheet.create({
   body: { paddingHorizontal: 22 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 6 },
   desc: { fontFamily: fonts.body, fontSize: 13.5, lineHeight: 21, color: noir.ivory62, marginTop: 18 },
+  howHead: { marginBottom: 14 },
   h: { fontFamily: fonts.display, fontSize: 19, color: noir.ivory, marginTop: 30, marginBottom: 14 },
   matchNote: { marginTop: 18, borderWidth: 1, borderColor: noir.gold28, backgroundColor: noir.gold12, borderRadius: 16, padding: 14 },
   matchText: { fontFamily: fonts.body, fontSize: 12.5, lineHeight: 18.5, color: noir.ivory80, marginTop: 8 },

@@ -20,6 +20,7 @@ import LookDetailScreen from '../screens/LookDetailScreen';
 import MakeupMatchScreen from '../screens/MakeupMatchScreen';
 import SeasonsScreen from '../screens/SeasonsScreen';
 import PaywallScreen from '../screens/PaywallScreen';
+import GuideScreen from '../screens/GuideScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -98,6 +99,7 @@ export default function RootNavigator() {
         <Stack.Screen name="LookDetail" component={LookDetailScreen} options={{ animation: 'slide_from_right' }} />
         <Stack.Screen name="MakeupMatch" component={MakeupMatchScreen} options={{ animation: 'slide_from_right' }} />
         <Stack.Screen name="Seasons" component={SeasonsScreen} options={{ animation: 'slide_from_right' }} />
+        <Stack.Screen name="Guide" component={GuideScreen} options={{ animation: 'slide_from_bottom', gestureEnabled: true }} />
         <Stack.Screen name="Paywall" component={PaywallScreen} options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
       </Stack.Navigator>
     </NavigationContainer>

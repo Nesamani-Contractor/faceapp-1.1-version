@@ -27,10 +27,39 @@
       "favicon": "./assets/icon.png"
     },
     "plugins": [
-      ["expo-camera", { "cameraPermission": "Shine Me uses your camera to read your face shape and colour season." }],
-      ["expo-image-picker", { "photosPermission": "Shine Me lets you pick an existing photo for your scan or for Makeup Match." }],
-      ["expo-splash-screen", { "image": "./assets/icon.png", "imageWidth": 160, "resizeMode": "contain", "backgroundColor": "#141010" }],
-      "expo-font"
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Shine Me uses your camera to read your face shape and colour season."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Shine Me lets you pick an existing photo for your scan or for Makeup Match."
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/icon.png",
+          "imageWidth": 160,
+          "resizeMode": "contain",
+          "backgroundColor": "#141010"
+        }
+      ],
+      "expo-font",
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Shine Me listens for “next”, “back” and “repeat” so you can follow a look hands-free.",
+          "speechRecognitionPermission": "Shine Me turns your voice into “next”, “back” and “repeat” commands while you follow a look.",
+          "androidSpeechServicePackages": [
+            "com.google.android.googlequicksearchbox",
+            "com.google.android.tts"
+          ]
+        }
+      ]
     ]
   }
 }

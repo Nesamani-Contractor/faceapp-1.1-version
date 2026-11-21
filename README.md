@@ -20,6 +20,7 @@ champagne accents, Playfair Display + Jost + JetBrains Mono.
 | Vault — stats, saved looks, scan history | `VaultScreen.tsx` |
 | Premium paywall ($6.99/week, $39.99/year), 3 free scans | `PaywallScreen.tsx` |
 | Onboarding with style pick | `WelcomeScreen.tsx` |
+| **Hands-free guide (FR-FA-02/03)** — one step at a time, read aloud; say **“Next”**, **“Back”** or **“Repeat”** | `GuideScreen.tsx`, `src/voice/` |
 
 Design tokens live in `src/theme/noir.ts`; every value comes from the 1b prototype CSS.
 
@@ -32,6 +33,37 @@ npx expo start          # press i / a / w, or scan the QR with Expo Go
 
 Without a backend the app runs in **demo mode**: scans produce a sample reading
 (clearly labelled on the results screen) so every screen can be reviewed.
+
+## Hands-free voice guide (FR-FA-02 / FR-FA-03)
+
+Open any look (or a scan's makeup guide) and tap **Hands-free guide**. Shine Me
+reads each step aloud and listens for:
+
+| Say | Also understood | Does |
+| --- | --- | --- |
+| **Next** | “next step”, “okay next”, “what's next”, “move on” | Next step (after the last: *complete*) |
+| **Back** | “go back”, “previous”, “previous step”, “step back” | Previous step (stays on step 1) |
+| **Repeat** | “repeat that”, “say that again”, “again”, “one more time” | Reads the current step again |
+
+Built to be dependable with hands full of brushes:
+
+- **Ignores conversation** — “I'll be back”, “the next thing I want…”, “don't go back” do nothing.
+- **Fires once** — acts on the first partial result (fast) and never double-steps when the engine re-sends or finalises it.
+- **Doesn't obey itself** — words in the narration currently playing are filtered (plus iOS echo cancellation); you can still talk over it.
+- **Never goes deaf** — sessions that end (silence, Android ≤ 12, iOS 1-minute cap) restart; network/busy errors back off and recover; a stuck start is retried; the mic is released in the background, when the screen loses focus, or when you turn voice off.
+- **Clear states** for no permission (with *Open Settings*), Siri/Google speech disabled, unsupported browser, and Expo Go.
+- Every voice command has a button twin, the screen stays awake, and the mic and read-aloud toggles are remembered.
+
+**Needs a development build.** Speech recognition is a native module
+(`expo-speech-recognition`) that Expo Go does not contain. In Expo Go the guide
+still works with the buttons and narration, and says that voice needs the app build.
+
+```bash
+npx expo run:ios        # or: npx expo run:android   (or an EAS development build)
+```
+
+`npm test` runs the voice unit tests (grammar, de-duplication, echo filter, and
+the engine's restart / error state machine with a fake recogniser).
 
 ## Preview in a browser
 

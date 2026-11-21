@@ -11,18 +11,34 @@ type AppState = {
   savedLooks: LookId[];
   history: ScanRecord[];
   latest?: ScanRecord;
+  /** Hands-free guide: listen for "next / back / repeat". */
+  voiceCommands: boolean;
+  /** Hands-free guide: read each step aloud. */
+  narration: boolean;
   completeOnboarding: (style?: LookId) => void;
   unlockPremium: () => void;
   addScan: (record: ScanRecord) => void;
   toggleSavedLook: (id: LookId) => void;
   resetAll: () => void;
+  setVoiceCommands: (on: boolean) => void;
+  setNarration: (on: boolean) => void;
 };
 
 const KEY = 'shineme.v1.1.state';
 
-type Persisted = Pick<AppState, 'hasOnboarded' | 'isPremium' | 'styleAnswer' | 'savedLooks' | 'history'>;
+type Persisted = Pick<
+  AppState,
+  'hasOnboarded' | 'isPremium' | 'styleAnswer' | 'savedLooks' | 'history' | 'voiceCommands' | 'narration'
+>;
 
-const EMPTY: Persisted = { hasOnboarded: false, isPremium: false, savedLooks: [], history: [] };
+const EMPTY: Persisted = {
+  hasOnboarded: false,
+  isPremium: false,
+  savedLooks: [],
+  history: [],
+  voiceCommands: true,
+  narration: true,
+};
 
 // Web camera captures are data: URIs of several MB; keep them in memory only
 // so localStorage doesn't overflow.
@@ -67,6 +83,8 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
           savedLooks: s.savedLooks.includes(id) ? s.savedLooks.filter((l) => l !== id) : [...s.savedLooks, id],
         })),
       resetAll: () => update(() => EMPTY),
+      setVoiceCommands: (on) => update((s) => ({ ...s, voiceCommands: on })),
+      setNarration: (on) => update((s) => ({ ...s, narration: on })),
     }),
     [ready, state, update]
   );

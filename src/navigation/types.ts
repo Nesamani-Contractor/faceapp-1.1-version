@@ -17,6 +17,8 @@ export type RootStackParamList = {
   MakeupMatch: undefined;
   Seasons: { highlight?: SeasonId } | undefined;
   Paywall: undefined;
+  /** Hands-free, voice-controlled step-by-step guide (FR-FA-02/03). */
+  Guide: { lookId: LookId } | { recordId: string };
 };
 
 declare global {
